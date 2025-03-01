@@ -1,0 +1,7 @@
+{
+  "name": "Hamtaro-store",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
