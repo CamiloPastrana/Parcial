@@ -1,0 +1,26 @@
+<div class="cart-item">
+  <div class="product-info">
+    <div class="product-image">
+      <img [src]="product.image" [alt]="product.title">
+    </div>
+    <div class="product-details">
+      <h3 class="product-title">{{ product.title }}</h3>
+      <div class="product-price">${{ product.price | number:'1.2-2' }}</div>
+      <div class="quantity-controls">
+        <span class="quantity-label">Cantidad: {{ quantity }}</span>
+        <div class="quantity-buttons">
+          <ion-button fill="clear" (click)="decreaseQuantity()" [disabled]="quantity <= 1">
+            <ion-icon name="remove-circle-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" (click)="increaseQuantity()">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-button fill="clear" class="remove-button" (click)="removeItem()">
+    <ion-icon name="trash-outline" color="danger"></ion-icon>
+  </ion-button>
+</div>
+

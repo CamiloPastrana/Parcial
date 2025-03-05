@@ -1,0 +1,160 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cart" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-icon name="paw" class="hamtaro-icon"></ion-icon>
+      Checkout
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding checkout-content">
+  <div class="checkout-container">
+    <!-- Progress Steps -->
+    <div class="progress-steps">
+      <div class="step active">
+        <div class="step-icon">
+          <ion-icon name="person"></ion-icon>
+        </div>
+        <div class="step-label">Detalles</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-icon">
+          <ion-icon name="card"></ion-icon>
+        </div>
+        <div class="step-label">Pago</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-icon">
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </div>
+        <div class="step-label">Confirmar</div>
+      </div>
+    </div>
+
+    <form (ngSubmit)="processPayment()" class="checkout-form">
+      <!-- Sección de información personal -->
+      <div class="form-section hamtaro-border">
+        <h2>
+          <ion-icon name="person-circle-outline"></ion-icon>
+          Información Personal
+        </h2>
+        <div class="form-grid">
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input [(ngModel)]="userData.name" name="name" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input [(ngModel)]="userData.lastName" name="lastName" required></ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- Sección de dirección -->
+      <div class="form-section hamtaro-border">
+        <h2>
+          <ion-icon name="location-outline"></ion-icon>
+          Dirección de Envío
+        </h2>
+        <div class="form-grid">
+          <ion-item class="full-width">
+            <ion-label position="floating">País</ion-label>
+            <ion-input [(ngModel)]="userData.address.country" name="country" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Ciudad</ion-label>
+            <ion-input [(ngModel)]="userData.address.city" name="city" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Código Postal</ion-label>
+            <ion-input [(ngModel)]="userData.address.zipcode" name="zipcode" required></ion-input>
+          </ion-item>
+          <ion-item class="full-width">
+            <ion-label position="floating">Dirección</ion-label>
+            <ion-input [(ngModel)]="userData.address.street" name="street" required></ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- Sección de pago -->
+      <div class="form-section hamtaro-border" *ngIf="userData.cardDetails">
+        <h2>
+          <ion-icon name="card-outline"></ion-icon>
+          Información de Pago
+        </h2>
+        <div class="form-grid">
+          <ion-item *ngIf="userData.cardDetails">
+            <ion-label position="floating">Número de tarjeta</ion-label>
+            <ion-input type="number" [(ngModel)]="userData.cardDetails.cardNumber" name="cardNumber" required></ion-input>
+          </ion-item>
+          <ion-item *ngIf="userData.cardDetails">
+            <ion-label position="floating">CVC</ion-label>
+            <ion-input type="number" [(ngModel)]="userData.cardDetails.cvc" name="cvc" required maxlength="3"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="userData.cardDetails">
+            <ion-label position="floating">Fecha de expiración</ion-label>
+            <ion-input type="text" placeholder="MM/YY" [(ngModel)]="userData.cardDetails.expirationDate" name="expirationDate" required></ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- Payment Methods Section -->
+      <div class="form-section hamtaro-border">
+        <h2>
+          <ion-icon name="wallet-outline"></ion-icon>
+          Método de Pago
+        </h2>
+        <div class="payment-methods">
+          <div class="payment-method active">
+            <ion-icon name="card-outline"></ion-icon>
+            <span>Tarjeta de Crédito</span>
+          </div>
+          <div class="payment-method">
+            <ion-icon name="logo-paypal"></ion-icon>
+            <span>PayPal</span>
+          </div>
+          <div class="payment-method">
+            <ion-icon name="cash-outline"></ion-icon>
+            <span>Efectivo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Button (In-form) -->
+      <div class="payment-button-container">
+        <div class="total-display">
+          <span>Total a pagar:</span>
+          <span class="amount">${{ total | number:'1.2-2' }}</span>
+        </div>
+        <ion-button expand="block" type="submit" class="pay-button">
+          <ion-icon name="paw" slot="start"></ion-icon>
+          Realizar Pago
+        </ion-button>
+      </div>
+      
+      <!-- Extra space for scrolling -->
+      <div class="form-bottom-space"></div>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <div class="footer-content">
+      <div class="total-section">
+        <span class="total-label">Total a pagar:</span>
+        <span class="total-amount">${{ total | number:'1.2-2' }}</span>
+      </div>
+      <ion-button expand="block" (click)="processPayment()" class="pay-button">
+        <ion-icon name="paw" slot="start"></ion-icon>
+        Confirmar Pago
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+

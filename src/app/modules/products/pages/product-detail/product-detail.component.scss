@@ -1,0 +1,79 @@
+.product-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.product-image {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ion-color-light);
+  border-radius: 16px;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+.product-info {
+  .product-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--ion-color-primary);
+  }
+
+  .category-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .category {
+      font-size: 0.9rem;
+      color: var(--ion-color-medium);
+      background-color: var(--ion-color-secondary);
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .description {
+    margin-bottom: 1rem;
+    color: var(--ion-text-color);
+  }
+
+  .product-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ion-color-medium);
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      .hamtaro-icon {
+        color: var(--ion-color-warning);
+      }
+    }
+  }
+}
+
+.add-to-cart-btn {
+  margin-top: 1.5rem;
+}
+

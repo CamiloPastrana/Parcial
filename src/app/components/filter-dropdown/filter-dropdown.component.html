@@ -1,0 +1,19 @@
+<div class="dropdown-container">
+  <ion-button class="dropdown-button" (click)="toggleDropdown()" fill="outline" expand="block">
+    {{ selectedCategory || 'Todas las categorías' }}
+    <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+  </ion-button>
+  
+  <div class="dropdown-menu" [class.show]="isOpen">
+    <ion-item button (click)="selectCategory('all')">
+      <ion-label>Todas las categorías</ion-label>
+    </ion-item>
+    <ion-item 
+      button
+      *ngFor="let category of categories" 
+      (click)="selectCategory(category)">
+      <ion-label>{{ category }}</ion-label>
+    </ion-item>
+  </div>
+</div>
+

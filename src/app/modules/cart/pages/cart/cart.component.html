@@ -1,0 +1,50 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/products/home" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-icon name="cart" class="hamtaro-icon"></ion-icon>
+      Carrito
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container *ngIf="cartItems.length > 0; else emptyCart">
+    <div class="cart-items">
+      <app-cart-item
+        *ngFor="let item of cartItems"
+        [product]="item.product"
+        [quantity]="item.quantity"
+        (increase)="increaseQuantity($event)"
+        (decrease)="decreaseQuantity($event)"
+        (remove)="removeItem($event)">
+      </app-cart-item>
+    </div>
+    
+    <div class="cart-summary hamtaro-border">
+      <div class="total-section">
+        <span class="total-label">Total</span>
+        <span class="total-amount">${{ total | number:'1.2-2' }}</span>
+      </div>
+      <ion-button expand="block" class="checkout-button"  (click)="goCheckout()">
+        <ion-icon name="paw" slot="start"></ion-icon>
+        Ir a Pagar
+      </ion-button>
+    </div>
+  </ng-container>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <img src="assets/icons/hamtaro-sad.gif" alt="Carrito vacío" class="empty-cart-image">
+      <h2>Tu carrito está vacío</h2>
+      <p>¡Agrega algunos productos para comenzar!</p>
+      <ion-button (click)="goHome()" expand="block" class="continue-shopping">
+        <ion-icon name="paw" slot="start"></ion-icon>
+        Ver Productos
+      </ion-button>
+    </div>
+  </ng-template>
+</ion-content>
+

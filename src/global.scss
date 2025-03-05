@@ -1,37 +1,252 @@
 /*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+* App Global CSS
+* ----------------------------------------------------------------------------
+* Estilos globales con un diseño minimalista y suave inspirado en Hamtaro
+*/
 
-/* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+/* Paleta de colores suave inspirada en Hamtaro */
+:root {
+  /* Colores principales más suaves */
+  --ion-color-primary: #ffc5a1;
+  --ion-color-primary-rgb: 255, 197, 161;
+  --ion-color-primary-contrast: #815d46;
+  --ion-color-primary-contrast-rgb: 129, 93, 70;
+  --ion-color-primary-shade: #ffb68e;
+  --ion-color-primary-tint: #ffd4b8;
 
-/* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+  --ion-color-secondary: #fff0e6;
+  --ion-color-secondary-rgb: 255, 240, 230;
+  --ion-color-secondary-contrast: #815d46;
+  --ion-color-secondary-contrast-rgb: 129, 93, 70;
+  --ion-color-secondary-shade: #ffe4d3;
+  --ion-color-secondary-tint: #fff5ed;
 
-/* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+  --ion-color-tertiary: #ffb3b3;
+  --ion-color-tertiary-rgb: 255, 179, 179;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #ff9e9e;
+  --ion-color-tertiary-tint: #ffc4c4;
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+  --ion-color-success: #98d8bf;
+  --ion-color-success-rgb: 152, 216, 191;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #86c7ad;
+  --ion-color-success-tint: #a9e0c9;
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+  --ion-color-warning: #ffd6a5;
+  --ion-color-warning-rgb: 255, 214, 165;
+  --ion-color-warning-contrast: #815d46;
+  --ion-color-warning-contrast-rgb: 129, 93, 70;
+  --ion-color-warning-shade: #ffcb91;
+  --ion-color-warning-tint: #ffdfb8;
+
+  --ion-color-danger: #ffb3b3;
+  --ion-color-danger-rgb: 255, 179, 179;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #ff9e9e;
+  --ion-color-danger-tint: #ffc4c4;
+
+  --ion-color-medium: #bfb3a8;
+  --ion-color-medium-rgb: 191, 179, 168;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #a89e94;
+  --ion-color-medium-tint: #ccc1b7;
+
+  --ion-color-light: #fff9f5;
+  --ion-color-light-rgb: 255, 249, 245;
+  --ion-color-light-contrast: #815d46;
+  --ion-color-light-contrast-rgb: 129, 93, 70;
+  --ion-color-light-shade: #fff4ed;
+  --ion-color-light-tint: #fffaf7;
+
+  /* Fondo de la aplicación */
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255, 255, 255;
+
+  /* Colores de texto más suaves */
+  --ion-text-color: #6b5d54;
+  --ion-text-color-rgb: 107, 93, 84;
+
+  /* Variables personalizadas */
+  --hamtaro-shadow: 0 4px 12px rgba(255, 197, 161, 0.15);
+  --hamtaro-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estilos globales para botones */
+ion-button {
+  --border-radius: 24px;
+  font-weight: 500;
+  text-transform: none;
+  --box-shadow: var(--hamtaro-shadow);
+  transition: var(--hamtaro-transition);
+  letter-spacing: 0.3px;
+
+  &::before {
+    border-radius: 24px;
+  }
+
+  &:hover {
+    --box-shadow: 0 6px 16px rgba(255, 197, 161, 0.25);
+    transform: translateY(-2px);
+  }
+
+  &.button-solid {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+  }
+
+  &.button-outline {
+    --border-color: var(--ion-color-primary);
+    --color: var(--ion-color-primary);
+    --border-width: 1.5px;
+  }
+}
+
+/* Estilos para tarjetas */
+ion-card {
+  border-radius: 20px;
+  box-shadow: var(--hamtaro-shadow);
+  transition: var(--hamtaro-transition);
+  background: var(--ion-color-light);
+  border: 1px solid rgba(255, 197, 161, 0.1);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 197, 161, 0.2);
+  }
+}
+
+/* Estilos para encabezados */
+ion-header {
+  ion-toolbar {
+    --background: rgba(255, 255, 255, 0.95);
+    --border-color: transparent;
+    backdrop-filter: blur(10px);
+    
+    ion-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--ion-color-primary-contrast);
+
+      .hamtaro-icon {
+        font-size: 1.1em;
+        margin-right: 8px;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+/* Estilos para la barra de búsqueda */
+ion-searchbar {
+  --border-radius: 16px;
+  --box-shadow: none;
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-primary-contrast);
+  --placeholder-color: var(--ion-color-medium);
+  --icon-color: var(--ion-color-primary);
+  border: 1.5px solid rgba(255, 197, 161, 0.2);
+  margin-bottom: 1.5rem;
+  transition: var(--hamtaro-transition);
+
+  &:focus-within {
+    border-color: var(--ion-color-primary);
+    --background: #ffffff;
+  }
+}
+
+/* Estilos para botones de compra y checkout */
+.checkout-button, .add-to-cart-btn, .continue-shopping {
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+  font-weight: 600;
+  margin: 1rem 0;
+  height: 48px;
+  
+  ion-icon {
+    margin-right: 8px;
+    font-size: 1.2em;
+  }
+}
+
+/* Estilos para precios */
+.product-price, .total-amount {
+  color: var(--ion-color-primary-contrast);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* Estilos para el botón del carrito */
+.cart-button {
+  position: relative;
+  
+  ion-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    font-size: 0.7rem;
+    --padding-start: 4px;
+    --padding-end: 4px;
+    --padding-top: 2px;
+    --padding-bottom: 2px;
+    border-radius: 10px;
+    background: var(--ion-color-tertiary);
+    color: white;
+  }
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--ion-text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--ion-color-primary-contrast);
+  letter-spacing: -0.3px;
+}
+
+/* Clases de utilidad */
+.hamtaro-border {
+  border: 1.5px solid rgba(255, 197, 161, 0.2);
+  border-radius: 20px;
+  padding: 16px;
+  background: var(--ion-color-light);
+  transition: var(--hamtaro-transition);
+
+  &:hover {
+    border-color: var(--ion-color-primary);
+  }
+}
+
+.hamtaro-icon {
+  color: var(--ion-color-primary);
+  transition: var(--hamtaro-transition);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+

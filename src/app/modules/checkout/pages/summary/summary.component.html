@@ -1,0 +1,68 @@
+<ion-content class="ion-padding">
+  <div class="summary-container" *ngIf="userData">
+    <div class="success-animation" [class.show-animation]="showAnimation">
+      <div class="checkmark-circle">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </div>
+    </div>
+    
+    <h1 class="thank-you">¡Gracias por tu compra!</h1>
+    <p class="order-message">Tu pedido ha sido procesado con éxito</p>
+  
+    <div class="order-details hamtaro-border">
+      <h2>Detalles del pedido</h2>
+      
+      <div class="detail-group">
+        <div class="detail-item">
+          <div class="detail-icon">
+            <ion-icon name="person-outline"></ion-icon>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Cliente</span>
+            <span class="detail-value">{{ userData.name }} {{ userData.lastName }}</span>
+          </div>
+        </div>
+  
+        <div class="detail-item">
+          <div class="detail-icon">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Dirección de envío</span>
+            <span class="detail-value">{{ userData.address.street }}</span>
+            <span class="detail-subvalue">{{ userData.address.city }}, {{ userData.address.zipcode }}</span>
+          </div>
+        </div>
+  
+        <div class="detail-item" *ngIf="userData?.cardDetails?.cardNumber">
+          <div class="detail-icon">
+            <ion-icon name="card-outline"></ion-icon>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Método de pago</span>
+            <p><strong>Método de pago:</strong> Tarjeta terminada en {{ maskedCardNumber }}</p>
+          </div>
+        </div>
+        
+        <div class="detail-item total">
+          <div class="detail-icon">
+            <ion-icon name="pricetag-outline"></ion-icon>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Total pagado</span>
+            <span class="detail-value highlight">
+              ${{ total | number:'1.2-2' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="actions">
+      <ion-button expand="block" class="continue-shopping" (click)="goHome()">
+        <ion-icon name="paw" slot="start"></ion-icon>
+        Seguir comprando
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

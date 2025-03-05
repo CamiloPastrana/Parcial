@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/products/home" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToCart()" class="cart-button">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge *ngIf="cartItemCount > 0">{{cartItemCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="product">
+  <div class="product-container hamtaro-border">
+    <div class="product-image">
+      <img [src]="product.image" [alt]="product.title">
+    </div>
+    <div class="product-info">
+      <h1 class="product-title">{{ product.title }}</h1>
+      <div class="category-price">
+        <span class="category">{{ product.category }}</span>
+        <span class="price">${{ product.price | number:'1.2-2' }}</span>
+      </div>
+      <p class="description">{{ product.description }}</p>
+      <div class="product-stats">
+        <div class="stat">
+          <ion-icon name="star" class="hamtaro-icon"></ion-icon>
+          <span>{{ product.rating.rate }} ({{ product.rating.count }})</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-button expand="block" class="add-to-cart-btn" (click)="addToCart()">
+    <ion-icon name="cart" slot="start"></ion-icon>
+    Agregar al Carrito
+  </ion-button>
+</ion-content>
+

@@ -1,0 +1,116 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+ion-content {
+  --padding-bottom: 32px; // Add padding at the bottom for better scrolling
+}
+
+.filter-sort-container {
+  background: var(--ion-color-light);
+  border-radius: 16px;
+  padding: 1rem;
+  margin: 1rem 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1.5px solid rgba(255, 197, 161, 0.2);
+  transition: var(--hamtaro-transition);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  &:hover {
+    border-color: var(--ion-color-primary);
+  }
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 0.75rem;
+
+  ion-button {
+    --color: var(--ion-color-medium);
+    font-size: 0.9rem;
+
+    &.active {
+      --color: var(--ion-color-primary-contrast);
+      font-weight: 600;
+    }
+
+    ion-icon {
+      margin-right: 4px;
+    }
+  }
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
+  padding: 0.5rem;
+  animation: fadeIn 0.6s ease-out;
+  min-height: 200px; // Ensure minimum height for short lists
+}
+
+.no-results {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--ion-color-light);
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 197, 161, 0.2);
+
+  .hamtaro-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--ion-color-primary);
+    opacity: 0.8;
+  }
+
+  h5 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--ion-color-primary-contrast);
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: var(--ion-color-medium);
+    max-width: 250px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .filter-sort-container {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0.75rem 0 1rem;
+    padding: 0.75rem;
+  }
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Fix for iOS overscroll behavior
+ion-content::part(scroll) {
+  overflow-y: auto !important;
+}
+

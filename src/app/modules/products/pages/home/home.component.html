@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="paw" class="hamtaro-icon"></ion-icon>
+      Hamtaro Store
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToCart()" class="cart-button">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge *ngIf="cartItemCount > 0">{{cartItemCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-searchbar 
+    placeholder="Buscar productos" 
+    [(ngModel)]="searchTerm" 
+    (ionInput)="onSearchChange()"
+    animated="true"
+    showCancelButton="focus">
+  </ion-searchbar>
+
+  <div class="filter-sort-container hamtaro-border">
+    <app-filter-dropdown 
+      [categories]="categories" 
+      (categorySelected)="filterByCategory($event)">
+    </app-filter-dropdown>
+
+    <div class="sort-buttons">
+      <ion-button fill="clear" [class.active]="sortDirection === 'asc'" (click)="setSortDirection('asc')">
+        <ion-icon name="arrow-up"></ion-icon> Precio
+      </ion-button>
+      <ion-button fill="clear" [class.active]="sortDirection === 'desc'" (click)="setSortDirection('desc')">
+        <ion-icon name="arrow-down"></ion-icon> Precio
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="products-grid">
+    <app-product-card 
+      *ngFor="let product of filteredProducts" 
+      [product]="product">
+    </app-product-card>
+  </div>
+
+  <div class="no-results" *ngIf="filteredProducts.length === 0">
+    <ion-icon name="sad" class="hamtaro-icon"></ion-icon>
+    <h5>No se encontraron productos</h5>
+    <p>Intenta ajustar tus filtros o términos de búsqueda.</p>
+  </div>
+
+  <!-- Add extra space at the bottom for better scrolling -->
+  <div style="height: 32px;"></div>
+</ion-content>
+

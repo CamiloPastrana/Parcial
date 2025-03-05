@@ -1,0 +1,14 @@
+<div class="product-card" (click)="viewProduct()">
+  <div class="product-image">
+    <img [src]="product.image" [alt]="product.title">
+  </div>
+  <div class="product-info">
+    <h3 class="product-title">{{ product.title | slice:0:25 }}{{ product.title.length > 25 ? '...' : '' }}</h3>
+    <div class="product-meta">
+      <p class="product-category">{{ product.category }}</p>
+      <p class="product-rating">{{ product.rating.rate }} ⭐</p>
+    </div>
+    <p class="product-price">$ {{ product.price | number:'1.2-2' }}</p>
+  </div>
+</div>
+
